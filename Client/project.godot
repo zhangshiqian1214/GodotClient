@@ -19,6 +19,13 @@ config/name="Client"
 run/main_scene="res://Main.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Common="*res://Common.gd"
+Sproto="*res://Sproto.gd"
+SkynetWsClient="*res://SkynetWsClient.gd"
+SkynetTcpClient="*res://SkynetTcpClient.gd"
+
 [rendering]
 
 environment/default_environment="res://default_env.tres"

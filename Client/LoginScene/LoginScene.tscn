@@ -1,0 +1,74 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://LoginScene/LoginScene.gd" type="Script" id=1]
+[ext_resource path="res://LoginScene/res/bg1.jpg" type="Texture" id=2]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 512, 300 )
+scale = Vector2( 0.9, 0.9 )
+texture = ExtResource( 2 )
+
+[node name="LoginAndRegister" type="Node2D" parent="."]
+position = Vector2( 100, 0 )
+
+[node name="Account" type="Label" parent="LoginAndRegister"]
+margin_left = 309.0
+margin_top = 412.0
+margin_right = 384.0
+margin_bottom = 446.0
+text = "Account"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LineEdit" type="LineEdit" parent="LoginAndRegister/Account"]
+margin_left = 66.0
+margin_top = -6.0
+margin_right = 217.0
+margin_bottom = 18.0
+
+[node name="Password" type="Label" parent="LoginAndRegister"]
+margin_left = 308.885
+margin_top = 443.655
+margin_right = 368.885
+margin_bottom = 457.655
+text = "Password"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LineEdit" type="LineEdit" parent="LoginAndRegister/Password"]
+margin_left = 66.4706
+margin_top = -4.20593
+margin_right = 216.471
+margin_bottom = 19.7941
+max_length = 20
+secret = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LoginBtn" type="Button" parent="LoginAndRegister"]
+margin_left = 356.88
+margin_top = 495.723
+margin_right = 432.88
+margin_bottom = 526.723
+text = "Login"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RegisterBtn" type="Button" parent="LoginAndRegister"]
+margin_left = 459.0
+margin_top = 497.0
+margin_right = 536.0
+margin_bottom = 527.0
+text = "Register"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="LoginAndRegister/LoginBtn" to="." method="_on_LoginBtn_pressed"]
+[connection signal="pressed" from="LoginAndRegister/RegisterBtn" to="." method="_on_RegisterBtn_pressed"]

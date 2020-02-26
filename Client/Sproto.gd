@@ -10,6 +10,12 @@ var session_requests = {}
 var auto_session = 0
 
 func _ready():
+	var f = File.new()
+	if (f.open("res://protocol.spb", File.READ)) == OK:
+		var buffer = f.get_buffer(f.get_len())
+		var tmp = Array(buffer)
+		loadsproto(tmp)
+		f.close()
 	set_process(false)
 	pass
 	
