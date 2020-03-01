@@ -11,11 +11,12 @@ func _ready():
 		skynetWsClient.register_event("net.on_open", self, "on_net_open")
 		skynetWsClient.register_event("net.on_close", self, "on_net_close")
 		skynetWsClient.register_event("net.on_error", self, "on_net_error")
-		#skynetWsClient.connect_server("ws://119.23.21.210:7101")
+		#skynetWsClient.connect_server("ws://106.52.245.192:7101")
 	if skynetTcpClient != null:
 		skynetTcpClient.register_event("net.on_open", self, "on_net_open")
 		skynetTcpClient.register_event("net.on_close", self, "on_net_close")
 		skynetTcpClient.register_event("net.on_error", self, "on_net_error")
+		#skynetTcpClient.connect_server("106.52.245.192", 7001)
 		skynetTcpClient.connect_server("119.23.21.210", 7001)
 		
 

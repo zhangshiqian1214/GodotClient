@@ -49,18 +49,18 @@ func on_account_register(data, ud):
 func _on_LoginBtn_pressed():
 	var req = {
 		"account" : $LoginAndRegister/Account/LineEdit.text,
-		"password" : $LoginAndRegister/Password/LineEdit.text,
-		"platform" : "default"
+		"password" : $LoginAndRegister/Password/LineEdit.text.sha1_text(),
+		"channel" : "test"
 	}
 	skynetTcpClient.request("account.login", req)
 
 
 func _on_RegisterBtn_pressed():
 	var req = {
-		"platform" : "default",
 		"account" : $LoginAndRegister/Account/LineEdit.text,
 		"password" : $LoginAndRegister/Password/LineEdit.text,
 		"email" : $LoginAndRegister/Account/LineEdit.text+"@"+$LoginAndRegister/Password/LineEdit.text,
-		"imei" : "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+		"imei" : "867531043694245",
+		"channel" : "test"
 	}
 	skynetTcpClient.request("account.register", req)

@@ -126,14 +126,16 @@ func dispatch(buffer):
 		return
 	var header_tmp = header_ret["data"]
 	var header_sz = header_ret["size"]
-	var content = bin.subarray(header_sz, -1)
+	var content = null
+	if header_sz < bin.size():
+		content = bin.subarray(header_sz, -1)
 	var ud = null
 	if header_tmp.has("ud"):
 		ud = header_tmp.ud
 	if header_tmp.has("type") and header_tmp.has("session"):
 		var proto = queryproto(header_tmp.type)
 		var result
-		if proto.has("request"):
+		if proto.has("request") and content != null:
 			result = decode(proto.request, content)
 		if header_tmp.session > 0:
 			return ["REQUEST", proto.pname, result, gen_response(proto.response, header_tmp.session, null), ud]
@@ -143,19 +145,24 @@ func dispatch(buffer):
 		var protoname = session_requests[header_tmp.session]
 		var proto = queryproto(protoname)
 		session_requests.erase(header_tmp.session)
-		print("proto=", proto)
-		if proto.has("response"):
+		print("dispatch 222 proto=", proto)
+		if proto.has("response") and content != null:
 			var result = decode(proto.response, content)
+			print("dispatch 222 result=", result, " ud=", ud)
 			return ["RESPONSE", protoname, result, header_tmp.session, ud]
 		else:
+			print("dispatch 222 result=nil ud=", ud)
 			return ["RESPONSE", protoname, null, header_tmp.session, ud]
 	elif header_tmp.has("type") and not header_tmp.has("session"):
 		var proto = queryproto(header_tmp.type)
-		if proto.has("response"):
+		print("dispatch 333 proto=", proto)
+		if proto.has("response") and content != null:
 			var result = decode(proto.response, content)
+			print("dispatch 333 result=", result, "ud=", ud)
 			return ["RESPONSE", proto.pname, result, null, ud]
 		else:
 			var result = decode(proto.response, content)
+			print("dispatch 333 result=nil ud=", ud)
 			return ["RESPONSE", proto.pname, null, null, ud]
 	else:
 		return null
